@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.web.DAO.FDAO">
+	<select id="thumbnailSelectDo" resultType="org.web.DTO.FileDTO">
+		SELECT * FROM CLOUD_UPLOAD
+	</select>
+	
+	<select id="musicView" resultType="org.web.DTO.FileDTO">
+		SELECT * FROM CLOUD_UPLOAD WHERE FID = #{param1}
+	</select>
+	
+	<delete id="fileDeleteDo">
+		delete from cloud_upload where fId=#{param1}
+	</delete>
+		
+	<insert id="fileUpload">
+		insert into cloud_upload(userId,author,title,musicFile,musicFileRealName,imgFile,imgFileRealName,fday,fhit) values(#{param1},#{param2},#{param3},#{param4},#{param5},#{param6},#{param7},now(),0)
+	</insert>
+	
+	<select id="flikeSearch" resultType="java.lang.String">
+		select flike from cloud_upload where fId=#{param1}
+	</select>
+	
+	<update id="hitUp">
+		update cloud_upload set fhit = fhit + 1 where fId=#{param1}
+	</update>
+	
+	<update id="uploadFlike">
+		update cloud_upload set flike=#{param1} where fId=#{param2}
+	</update>
+	
+	<update id="hitDown">
+		update cloud_upload set fhit = fhit-1 where fId=#{param1}
+	</update>
+	
+	<update id="uplike">
+		update cloud_upload set flike=#{param2} where fId=#{param1}
+	</update>
+	
+	<select id="hitView" resultType="java.lang.Integer">
+		select fhit from cloud_upload where fid=#{param1}
+	</select>
+	
+	<!-- arraylist로 결과값 넘어오면 한 번 더 설정하기 -->
+	<select id="heartOn" resultType="org.web.DTO.FileDTO">
+		select fid,flike from cloud_upload
+	</select>
+	
+	
+	
+</mapper>

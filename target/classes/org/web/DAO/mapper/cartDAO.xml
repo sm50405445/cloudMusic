@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="org.web.DAO.CDAO">
+ 
+ <insert id="insertCartMenu">
+ 	insert into cloud_cart(cartid,username,goodsname,goodsprice) values(#{param1},#{param2},#{param3},#{param4})
+ </insert>
+ 
+ <select id="selectDo" resultType="org.web.DTO.CartDTO">
+ 	select * from cloud_cart
+ </select>
+ 
+ <select id="searchDo" resultType="org.web.DTO.CartDTO">
+ 	select cartId,username,goodsName,goodsPrice,goodsimg from cloud_cart where cartid in
+ 	<foreach collection="list" item="IdArr" index="0" separator="," open="(" close=")">
+ 	#{IdArr}
+ 	</foreach>  
+ </select>
+ 
+ </mapper>

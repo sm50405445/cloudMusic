@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.web.DAO.MDAO">
+
+<insert id="insertDo" parameterType="org.web.DTO.MemberDTO">
+	
+	insert into cloud_member(userId,userPw,userName) values(#{userId},#{userPw},#{userName})
+	
+</insert>
+
+<!-- userPw 관련 메서드 컨트롤러에서 지정해야함 -->
+<select id="LoginDo" resultType="java.lang.String">
+	select userPw from cloud_member where userId=#{param1}
+</select>
+
+<select id="IdcheckedDo" resultType="java.lang.Integer">
+	select count(*) from cloud_member where userId=#{param1}
+</select>
+
+<delete id="deleteDo">
+	delete from cloud_member where userId=#{param1} and userPw=#{param2}
+</delete>
+
+<select id="memberInfo" resultType="org.web.DTO.MemberDTO">
+	select * from cloud_member where userId=#{param1} and userPw=#{param2}
+</select>
+
+<update id="updateDo" parameterType="org.web.DTO.MemberDTO">
+	update cloud_member set userPw=#{userPw},userName=#{userName} where userId=#{userId}
+</update>
+
+<!-- userPw 관련 메서드 컨트롤러에서 지정해야함 -->
+<select id="MemberInfoChk" resultType="java.lang.String">
+	select userPw from cloud_member where userId=#{param1}
+</select>
+
+</mapper>

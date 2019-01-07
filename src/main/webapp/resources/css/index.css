@@ -1,0 +1,25 @@
+@charset "UTF-8";
+#main {
+	background:
+		url("https://a-v2.sndcdn.com/assets/images/home/hp_image-6155d6b.jpg")
+		no-repeat 50%;
+	background-size: cover;
+	color: #fff;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+.row.playlist .thumbnail {
+	height: 300px;
+	overflow-y: hidden;
+}
+
+.red {
+	color: #f00;
+}
+
+.nonered {
+	color: #000;
+}
